@@ -265,7 +265,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, args):
         """ Updates a certain object with new info """
-        c_name = c_id = att_name = att_val = kwargs = ''
+        c_name = c_id = att_name = att_val = kwargs = ""
 
         # isolate cls from id/args, ex: (<cls>, delim, <id/args>)
         args = args.partition(" ")
@@ -295,7 +295,7 @@ class HBNBCommand(cmd.Cmd):
             return
 
         # first determine if kwargs or args
-        if '{' in args[2] and '}' in args[2] and type(eval(args[2])) is dict:
+        if "{" in args[2] and "}" in args[2] and type(eval(args[2])) is dict:
             kwargs = eval(args[2])
             args = []  # reformat kwargs into list, ex: [<name>, <value>, ...]
             for k, v in kwargs.items():
@@ -303,23 +303,23 @@ class HBNBCommand(cmd.Cmd):
                 args.append(v)
         else:  # isolate args
             args = args[2]
-            if args and args[0] == '\"':  # check for quoted arg
-                second_quote = args.find('\"', 1)
+            if args and args[0] == '"':  # check for quoted arg
+                second_quote = args.find('"', 1)
                 att_name = args[1:second_quote]
-                args = args[second_quote + 1:]
+                args = args[second_quote + 1 :]
 
-            args = args.partition(' ')
+            args = args.partition(" ")
 
             # if att_name was not quoted arg
-            if not att_name and args[0] != ' ':
+            if not att_name and args[0] != " ":
                 att_name = args[0]
             # check for quoted val arg
-            if args[2] and args[2][0] == '\"':
-                att_val = args[2][1:args[2].find('\"', 1)]
+            if args[2] and args[2][0] == '"':
+                att_val = args[2][1 : args[2].find('"', 1)]
 
             # if att_val was not quoted arg
             if not att_val and args[2]:
-                att_val = args[2].partition(' ')[0]
+                att_val = args[2].partition(" ")[0]
 
             args = [att_name, att_val]
 
@@ -329,7 +329,7 @@ class HBNBCommand(cmd.Cmd):
         # iterate through attr names and values
         for i, att_name in enumerate(args):
             # block only runs on even iterations
-            if (i % 2 == 0):
+            if i % 2 == 0:
                 att_val = args[i + 1]  # following item is value
                 if not att_name:  # check for att_name
                     print("** attribute name missing **")
