@@ -127,32 +127,32 @@ class HBNBCommand(cmd.Cmd):
         class_name = params[0]
         kwargs = {}
 
-        for param in params[1:]:
-            splited = param.split("=")
-            if len(splited) != 2:
-                continue
+        if len(params) != 1:
+            for param in params[1:]:
+                splited = param.split("=")
+                if len(splited) != 2:
+                    continue
 
-            key, value = splited
-            if value.startswith('"') and value.endswith('"'):
-                value = value[1:-1]
-                value = value.replace("_", " ")
-                value = value.replace('\\"', '"')
+                key, value = splited
+                if value.startswith('"') and value.endswith('"'):
+                    value = value[1:-1]
+                    value = value.replace("_", " ")
+                    value = value.replace('\\"', '"')
 
-            if "." in value:
-                try:
-                    value = float(value)
-                except ValueError:
-                    pass
-            else:
-                try:
-                    value = int(value)
-                except ValueError:
-                    pass
+                if "." in value:
+                    try:
+                        value = float(value)
+                    except ValueError:
+                        pass
+                else:
+                    try:
+                        value = int(value)
+                    except ValueError:
+                        pass
 
-            kwargs[key] = value
+                kwargs[key] = value
 
-
-        new_instance = HBNBCommand.classes[params[0]](**kwargs)
+        new_instance = HBNBCommand.classes[class_name](**kwargs)
         storage.new(new_instance)
         storage.save()
         print(new_instance.id)
