@@ -123,7 +123,7 @@ class HBNBCommand(cmd.Cmd):
             return
         elif params[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
-            returnclass_name = params[0]
+            return
 
         class_name = params[0]
         kwargs = {}
