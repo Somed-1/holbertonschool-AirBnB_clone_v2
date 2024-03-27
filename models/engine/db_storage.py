@@ -7,6 +7,7 @@ from sqlalchemy.orm import sessionmaker, scoped_session
 from models.base_model import Base, BaseModel
 from models.city import City
 from models.state import State
+from models.user import User
 
 
 # Enviropment variables
@@ -40,6 +41,7 @@ class DBStorage:
         else:
             objs = self.__session.query(State).all()
             objs.extend(self.__session.query(City).all())
+            objs.extend(self.__session.query(User).all())
 
         return {"{}.{}".format(type(obj).__name__, obj.id): obj for obj in objs}
 
