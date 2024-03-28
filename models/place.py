@@ -6,7 +6,7 @@ from models.base_model import BaseModel
 from models.base_model import Base, BaseModel
 
 
-class Place(BaseModel):
+class Place(BaseModel, Base):
     """ A place to stay """
 
     __tablename__ = "places"
