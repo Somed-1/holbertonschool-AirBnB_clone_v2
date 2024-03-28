@@ -8,6 +8,7 @@ from models.base_model import Base, BaseModel
 from models.city import City
 from models.state import State
 from models.user import User
+from models.place import Place
 
 
 # Enviropment variables
@@ -42,6 +43,7 @@ class DBStorage:
             objs = self.__session.query(State).all()
             objs.extend(self.__session.query(City).all())
             objs.extend(self.__session.query(User).all())
+            objs.extend(self.__session.query(Place).all())
 
         return {"{}.{}".format(type(obj).__name__, obj.id): obj for obj in objs}
 
