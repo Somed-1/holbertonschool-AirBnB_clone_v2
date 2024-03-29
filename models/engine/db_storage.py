@@ -10,6 +10,7 @@ from models.state import State
 from models.user import User
 from models.place import Place
 from models.review import Review
+from models.amenity import Amenity
 
 
 # Enviropment variables
@@ -46,6 +47,7 @@ class DBStorage:
             objs.extend(self.__session.query(User).all())
             objs.extend(self.__session.query(Place).all())
             objs.extend(self.__session.query(Review).all())
+            objs.extend(self.__session.query(Amenity).all())
 
         return {"{}.{}".format(type(obj).__name__, obj.id): obj for obj in objs}
 
