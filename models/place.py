@@ -8,6 +8,7 @@ from models.base_model import Base, BaseModel
 import os
 import models
 from models.amenity import Amenity
+from models.review import Review
 
 
 association_table = Table(
@@ -40,18 +41,25 @@ class Place(BaseModel, Base):
     amenity_ids = []
 
     if os.getenv("DB_STORAGE_TYPE") != "db":
+        @property
+        def reviews(self):
+            """Get a list of all Reviews"""
+            reviewlist = []
+            for review in list(models.storage.all(Review).values()):
+                if review.place_id == self.id:
+                    reviewlist.append(review)
+            return reviewlist
 
         @property
         def amenities(self):
-            """Getter for amenities"""
-            amenity_list = []
+            """ Get Linked Amenities"""
+            amenitylist = []
             for amenity in list(models.storage.all(Amenity).values()):
                 if amenity.id in self.amenity_ids:
-                    amenity_list.append(amenity)
-            return amenity_list
+                    amenitylist.append(amenity)
+            return amenitylist
 
         @amenities.setter
         def amenities(self, value):
-            """Setter for amenities"""
-            if isinstance(value, Amenity):
+            if type(value) == Amenity:
                 self.amenity_ids.append(value.id)
