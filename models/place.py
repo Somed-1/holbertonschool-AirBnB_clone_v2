@@ -37,10 +37,10 @@ class Place(BaseModel, Base):
     longitude = Column(Float)
     reviews = relationship("Review", backref="place", cascade="delete")
     amenities = relationship("Amenity", secondary="place_amenity",
-                             viewonly=False)
+                             overlaps="place_amenities", viewonly=False)
     amenity_ids = []
 
-    if os.getenv("DB_STORAGE_TYPE") != "db":
+    if os.getenv("HBNB_TYPE_STORAGE", None) != "db":
         @property
         def reviews(self):
             """Get a list of all Reviews"""
