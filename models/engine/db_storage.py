@@ -37,7 +37,7 @@ class DBStorage:
     def all(self, cls=None):
         """All method"""
         if cls is not None:
-            if type(cls) == str:
+            if isinstance(cls, str):
                 cls = eval(cls)
             objs = self.__session.query(cls)
         else:
@@ -48,7 +48,9 @@ class DBStorage:
             objs.extend(self.__session.query(Review).all())
             objs.extend(self.__session.query(Amenity).all())
 
-        return {"{}.{}".format(type(obj).__name__, obj.id): obj for obj in objs}
+        return {
+            "{}.{}".format(type(obj).__name__, obj.id): obj for obj in objs
+        }
 
     def new(self, obj):
         """New method"""
@@ -65,7 +67,8 @@ class DBStorage:
 
     def reload(self):
         Base.metadata.create_all(self.__engine)
-        session_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
+        session_factory = sessionmaker(
+            bind=self.__engine, expire_on_commit=False)
         Session = scoped_session(session_factory)
         self.__session = Session()
 
