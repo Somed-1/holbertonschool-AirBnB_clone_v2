@@ -1,15 +1,14 @@
 #!/usr/bin/python3
 """ Place Module for HBNB project """
-from sqlalchemy import Column, ForeignKey, Integer, String, Float, Table
-from sqlalchemy.orm import relationship
-from models.base_model import BaseModel
-
-from models.base_model import Base, BaseModel
 import os
+
+from sqlalchemy import Column, Float, ForeignKey, Integer, String, Table
+from sqlalchemy.orm import relationship
+
 import models
 from models.amenity import Amenity
+from models.base_model import Base, BaseModel
 from models.review import Review
-
 
 association_table = Table(
     "place_amenity", Base.metadata,

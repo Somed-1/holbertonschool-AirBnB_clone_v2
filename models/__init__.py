@@ -2,7 +2,6 @@
 """This module instantiates an object of class FileStorage"""
 import os
 
-
 # Enviropment variables
 DB_TYPE = os.getenv('HBNB_TYPE_STORAGE')
 
