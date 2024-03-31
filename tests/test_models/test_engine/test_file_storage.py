@@ -5,7 +5,7 @@ import os
 import unittest
 from datetime import datetime
 
-import pep8
+import pycodestyle
 
 from models.amenity import Amenity
 from models.base_model import BaseModel
@@ -80,11 +80,11 @@ class TestFileStorage(unittest.TestCase):
         del cls.amenity
         del cls.review
 
-    def test_pep8_FileStorage(self):
-        """Test pep8 styling."""
-        style = pep8.StyleGuide(quiet=True)
+    def test_pycodestyle_FileStorage(self):
+        """Test pycodestyle styling."""
+        style = pycodestyle.StyleGuide(quiet=True)
         p = style.check_files(['models/engine/file_storage.py'])
-        self.assertEqual(p.total_errors, 0, "fix pep8")
+        self.assertEqual(p.total_errors, 0, "fix pycodestyle")
 
     def test_docstrings(self):
         """Check for docstrings."""
