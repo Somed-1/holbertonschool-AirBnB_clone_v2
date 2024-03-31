@@ -66,6 +66,7 @@ class DBStorage:
             self.__session.delete(obj)
 
     def reload(self):
+        """realod method"""
         Base.metadata.create_all(self.__engine)
         session_factory = sessionmaker(
             bind=self.__engine, expire_on_commit=False)
@@ -73,4 +74,5 @@ class DBStorage:
         self.__session = Session()
 
     def close(self):
+        """close method"""
         self.__session.close()
