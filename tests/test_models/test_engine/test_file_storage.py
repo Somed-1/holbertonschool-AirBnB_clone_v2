@@ -1,9 +1,10 @@
 #!/usr/bin/python3
 """ Module for testing file storage"""
-import unittest
-from models.base_model import BaseModel
-from models import storage
 import os
+import unittest
+
+from models import storage
+from models.base_model import BaseModel
 
 
 class test_fileStorage(unittest.TestCase):
@@ -31,9 +32,9 @@ class test_fileStorage(unittest.TestCase):
     def test_new(self):
         """ New object is correctly added to __objects """
         new = BaseModel()
-        for obj in storage.all().values():
-            temp = obj
-        self.assertTrue(temp is obj)
+        storage.new(new)
+        storage.save()
+        self.assertIn('BaseModel.' + new.id, storage.all())
 
     def test_all(self):
         """ __objects is properly returned """
@@ -107,3 +108,4 @@ class test_fileStorage(unittest.TestCase):
         from models.engine.file_storage import FileStorage
         print(type(storage))
         self.assertEqual(type(storage), FileStorage)
+
