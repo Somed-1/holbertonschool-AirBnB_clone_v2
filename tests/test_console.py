@@ -6,6 +6,7 @@ from console import HBNBCommand
 from models import storage
 import sqlalchemy
 
+
 class TestHBNBCommand(unittest.TestCase):
     """Represents the test class for the HBNBCommand class.
     """
@@ -48,6 +49,7 @@ class TestHBNBCommand(unittest.TestCase):
             # creating a User instance
             cout.truncate(0)
             cout.seek(0)
+
 
 if __name__ == "__main__":
     unittest.main()
