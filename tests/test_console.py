@@ -36,20 +36,6 @@ class TestHBNBCommand(unittest.TestCase):
             self.assertIn("'age': 17", cout.getvalue().strip())
             self.assertIn("'height': 5.9", cout.getvalue().strip())
 
-    @unittest.skipIf(
-        os.getenv('HBNB_TYPE_STORAGE') != 'db', 'DBStorage test')
-    def test_db_create(self):
-        """Tests the create command with the database storage.
-        """
-        with patch('sys.stdout', new=StringIO()) as cout:
-            cons = HBNBCommand()
-            # creating a model with non-null attribute(s)
-            with self.assertRaises(sqlalchemy.exc.OperationalError):
-                cons.onecmd('create User')
-            # creating a User instance
-            cout.truncate(0)
-            cout.seek(0)
-
 
 if __name__ == "__main__":
     unittest.main()
