@@ -188,7 +188,7 @@ class HBNBCommand(cmd.Cmd):
         key = c_name + "." + c_id
         try:
             print(storage._FileStorage__objects[key])
-        except AttributeError:
+        except (KeyError, AttributeError):
             print("** no instance found **")
 
     def help_show(self):
