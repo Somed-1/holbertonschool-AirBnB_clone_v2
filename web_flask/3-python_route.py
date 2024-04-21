@@ -23,8 +23,9 @@ def c_language(text):
     return f"C {text}"
 
 
+@app.route("/python/")
 @app.route("/python/<text>")
-def python_language(text):
+def python_language(text=""):
     if text:
         text = text.replace("_", " ")
     else:
