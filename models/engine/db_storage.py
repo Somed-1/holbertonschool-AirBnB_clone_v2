@@ -1,3 +1,5 @@
+#!/usr/bin/pydoc3
+"""db storage"""
 import os
 import sys
 
