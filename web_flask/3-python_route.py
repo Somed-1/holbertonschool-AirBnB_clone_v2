@@ -26,7 +26,7 @@ def c_language(text):
 @app.route("/python/<text>")
 def python_language(text):
     text = text.replace("_", " ")
-    return f"C {text}"
+    return f"Python {text}"
 
 
 if __name__ == "__main__":
