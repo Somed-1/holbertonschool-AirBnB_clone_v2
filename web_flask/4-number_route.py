@@ -34,8 +34,8 @@ def python_language(text=""):
 
 
 @app.route("/number/<n>")
-def number(n):
-    if not isinstance(n, int):
+def number(n=""):
+    if not n.isalnum() or n == "":
         return abort(404)
     return f"{n} is a number"
 
