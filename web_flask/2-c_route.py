@@ -19,6 +19,7 @@ def hbnb():
 
 @app.route("/c/<text>")
 def c_language(text):
+    text = text.replace("_", " ")
     return f"C {text}"
 
 
