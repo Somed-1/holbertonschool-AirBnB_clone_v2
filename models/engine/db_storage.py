@@ -21,7 +21,6 @@ DB = os.getenv('HBNB_MYSQL_DB')
 
 class DBStorage:
     """DBStorage class"""
-
     __engine = None
     __session = None
 
@@ -76,3 +75,4 @@ class DBStorage:
     def close(self):
         """close method"""
         self.__session.close()
+        return self.__session
