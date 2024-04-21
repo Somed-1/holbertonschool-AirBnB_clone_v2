@@ -1,4 +1,4 @@
-#!/usr/bin/pydoc3
+#!/usr/bin/python3
 """db storage"""
 import os
 import sys
