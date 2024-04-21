@@ -33,10 +33,8 @@ def python_language(text=""):
     return f"Python {text}"
 
 
-@app.route("/number/<n>")
-def number(n=""):
-    if not n.isalnum() or n == "":
-        return abort(404)
+@app.route("/number/<int:n>")
+def number(n):
     return f"{n} is a number"
 
 
